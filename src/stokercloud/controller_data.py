@@ -17,6 +17,7 @@ class Unit(Enum):
     DEGREE = 'deg'
     KILO_GRAM = 'kg'
     GRAM = 'g'
+    Distance = 'cm'
 
 
 class State(Enum):
@@ -105,3 +106,15 @@ class ControllerData:
     @property
     def consumption_total(self):
         return Value(self.get_sub_item('hopperdata', '4')['value'], Unit.KILO_GRAM)
+    
+    @property
+    def hoppercontent(self):
+        return Value(self.get_sub_item('frontdata', 'hoppercontent')['value'], Unit.KILO_GRAM)
+    
+    @property
+    def consumption_today(self):
+        return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)
+    
+    @property
+    def hopperdistance(self):
+        return Value(self.get_sub_item('substatesecs', 'hopperdistance')['value'], Unit.DISTANCE)
